@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/fdegmecic/.config/nvim/lua/fdegmecic'
+let g:netrw_dirhist_6='/home/fdegmecic/.config/nvim/lua'
+let g:netrw_dirhist_5='/home/fdegmecic/.config/nvim'
+let g:netrw_dirhist_4='/home/fdegmecic/dev-setup'
+let g:netrw_dirhist_3='/home/fdegmecic/dev-setup/tasks'
+let g:netrw_dirhist_2='/home/fdegmecic/.config/nvim/lua/fdegmecic'
+let g:netrw_dirhist_1='/home/fdegmecic/.config/nvim/lua'
+let g:netrw_dirhist_0='/home/fdegmecic/.config/nvim'
+let g:netrw_dirhist_9='/home/fdegmecic/.config/nvim/lua/fdegmecic'
+let g:netrw_dirhist_8='/home/fdegmecic/.config/nvim/lua'
