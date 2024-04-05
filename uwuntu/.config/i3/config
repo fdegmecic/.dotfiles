@@ -42,7 +42,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 #remove default title bar
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 new_window 1pixel
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -216,7 +216,7 @@ client.background       $bg
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom --experimental-backend -b
-exec_always --no-startup-id cd ~/Pictures && wal -i pic1.jpg
+exec_always --no-startup-id cd ~/Pictures && wal -i pic11.jpg
 
 # brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 10%-
@@ -244,7 +244,10 @@ bindsym $mod+o exec ~/.screenlayout/layout-laptop-monitor.sh
 assign [class="Microsoft-edge"] $ws1
 assign [class="Google-chrome"] $ws2
 assign [class="jetbrains-idea"] $ws3
-assign [class="slack"] $ws5
+assign [class="Slack"] $ws5
 assign [class="remmina"] $ws6
 assign [class="obsidian"] $ws8
 assign [class="KeePassXC"] $ws9
+
+gaps outer 5px
+gaps inner 5px

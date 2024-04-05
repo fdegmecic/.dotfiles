@@ -3,4 +3,3 @@
 addToPath $HOME/.cargo/bin
 addToPath $HOME/.local/lib/python
 addToPath $HOME/neovim/bin
-# addToPath /opt/apache-maven-3.9.6/bin
