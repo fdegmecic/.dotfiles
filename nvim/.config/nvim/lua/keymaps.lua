@@ -12,6 +12,9 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Exit current file' })
 -- git
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
 
+-- yank to clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+
 -- Exit terminal mode
 -- vim.keymap.set('t', '<leader>pv', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -36,5 +39,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+vim.keymap.set('n', '<leader>m', function()
+  vim.cmd 'wincmd l'
+  vim.cmd 'q'
+end)
+
+vim.keymap.set('n', '<leader>n', function()
+  local file_path = vim.fn.expand '%:p'
+  local file_name = vim.fn.fnamemodify(file_path, ':t:r')
+
+  local original_window = vim.api.nvim_get_current_win()
+  local original_width = vim.api.nvim_win_get_width(original_window)
+  local new_width = math.floor(original_width * 0.4)
+
+  vim.cmd('rightbelow ' .. new_width .. 'vnew')
+
+  local cmd = 'cargo test --color=always ' .. file_name .. '::test -- --show-output'
+
+  vim.fn.termopen(cmd)
+  vim.api.nvim_set_current_win(original_window)
+end)
 
 -- vim: ts=2 sts=2 sw=2 et

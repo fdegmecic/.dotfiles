@@ -16,9 +16,8 @@ return {
             vim.cmd.Git 'push'
           end, opts)
 
-          -- rebase always
           vim.keymap.set('n', '<leader>P', function()
-            vim.cmd.Git { 'pull', '--rebase' }
+            vim.cmd.Git 'pull'
           end, opts)
           vim.keymap.set('n', '<leader>ge', function()
             vim.fn.system "git config user.name 'fdegmecic'"
