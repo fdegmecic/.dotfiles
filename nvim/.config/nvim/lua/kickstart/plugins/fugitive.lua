@@ -17,11 +17,11 @@ return {
           end, opts)
 
           vim.keymap.set('n', '<leader>P', function()
-            vim.cmd.Git 'pull'
+            vim.cmd.Git 'pull --rebase'
           end, opts)
           vim.keymap.set('n', '<leader>ge', function()
-            vim.fn.system "git config user.name 'fdegmecic'"
-            vim.fn.system "git config user.email '42947589+fdegmecic@users.noreply.github.com'"
+            vim.cmd.Git 'config user.name fdegmecic'
+            vim.cmd.Git 'config user.email 42947589+fdegmecic@users.noreply.github.com'
           end, opts)
 
           -- NOTE: It allows me to easily set the branch i am pushing and any tracking
