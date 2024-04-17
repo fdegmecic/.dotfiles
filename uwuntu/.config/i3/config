@@ -178,10 +178,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym ccaron resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -216,7 +216,7 @@ client.background       $bg
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom --experimental-backend -b
-exec_always --no-startup-id cd ~/Pictures && wal -i pic11.jpg
+exec_always --no-startup-id cd ~/Pictures && wal -i pic2.jpg
 
 # brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 10%-
@@ -247,7 +247,7 @@ assign [class="jetbrains-idea"] $ws3
 assign [class="Slack"] $ws5
 assign [class="remmina"] $ws6
 assign [class="obsidian"] $ws8
-assign [class="KeePassXC"] $ws9
+# assign [class="KeePassXC"] $ws9
 
 gaps outer 5px
 gaps inner 5px
