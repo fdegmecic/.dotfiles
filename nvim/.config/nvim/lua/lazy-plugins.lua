@@ -5,6 +5,7 @@
 --
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  '/mbbill/undotree',
   -- 'tpope/vim-surround',
   -- 'tpope/vim-fugitive',
 
@@ -24,6 +25,7 @@ require('lazy').setup({
   require 'kickstart/plugins/harpoon',
   require 'kickstart/plugins/autopairs',
   require 'kickstart/plugins/oil',
+  require 'kickstart/plugins/rustacean',
 
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
