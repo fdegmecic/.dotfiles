@@ -15,7 +15,6 @@ require('lazy').setup({
   require 'kickstart/plugins/gitsigns',
   require 'kickstart/plugins/which-key',
   require 'kickstart/plugins/telescope',
-  require 'kickstart/plugins/lspconfig',
   require 'kickstart/plugins/conform',
   require 'kickstart/plugins/cmp',
   require 'kickstart/plugins/todo-comments',
@@ -26,6 +25,7 @@ require('lazy').setup({
   require 'kickstart/plugins/autopairs',
   require 'kickstart/plugins/oil',
   require 'kickstart/plugins/rustacean',
+  require 'kickstart/plugins/dadbod',
 
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',

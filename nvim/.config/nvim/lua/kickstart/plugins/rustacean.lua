@@ -5,9 +5,11 @@ return {
       server = {
         on_attach = function(_, bufnr)
           vim.lsp.inlay_hint.enable(bufnr)
+
           vim.keymap.set('n', '<leader>ih', function()
-            vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
-          end, { desc = '[I]nlay [Hints] - rust' })
+            local local_bufnr = vim.api.nvim_get_current_buf()
+            vim.lsp.inlay_hint.enable(local_bufnr, not vim.lsp.inlay_hint.is_enabled(local_bufnr))
+          end, { desc = '[I]nlay [H]ints' })
         end,
       },
     }

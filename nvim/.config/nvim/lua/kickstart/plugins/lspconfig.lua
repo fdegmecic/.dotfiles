@@ -45,6 +45,7 @@ return {
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
           map('<leader>of', vim.diagnostic.open_float, '[O]pen [F]loat')
+          map('<Leader>dl', require('telescope.builtin').diagnostics, '[Diagnsotics] f[L]oat')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -87,6 +88,43 @@ return {
             },
           },
         },
+        tailwindcss = {
+          root_dir = function(...)
+            return require('lspconfig.util').root_pattern '.git'(...)
+          end,
+        },
+        html = {},
+        cssls = {},
+        tsserver = {
+          root_dir = function(...)
+            return require('lspconfig.util').root_pattern '.git'(...)
+          end,
+          single_file_support = false,
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'literal',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+        },
       }
       require('mason').setup()
 
@@ -95,6 +133,12 @@ return {
         'stylua', -- Used to format Lua code
         'pyright',
         -- 'rust_analyzer',
+        'tailwindcss-language-server',
+        'typescript-language-server',
+        'css-lsp',
+        'eslint-lsp',
+        'eslint_d',
+        'prettierd',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
