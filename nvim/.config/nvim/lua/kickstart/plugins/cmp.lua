@@ -33,13 +33,6 @@ return {
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
-      cmp.setup.filetype({ 'sql' }, {
-        sources = {
-          { name = 'vim-dadbod-completion' },
-          { name = 'buffer' },
-        },
-      })
-
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -63,7 +56,13 @@ return {
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<C-y>'] = cmp.mapping(
+            cmp.mapping.confirm {
+              behavior = cmp.ConfirmBehavior.Insert,
+              select = true,
+            },
+            { 'i', 'c' }
+          ),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -92,6 +91,14 @@ return {
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
+
+        cmp.setup.filetype({ 'sql' }, {
+          sources = {
+            { name = 'vim-dadbod-completion' },
+            { name = 'buffer' },
+          },
+        }),
+
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },

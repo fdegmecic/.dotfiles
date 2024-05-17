@@ -126,7 +126,9 @@ workspace 3 output $main-monitor
 workspace 4 output $main-monitor
 workspace 5 output $main-monitor
 workspace 6 output $main-monitor
-workspace 8 output $laptop-monitor
+workspace 7 output $main-monitor
+workspace 8 output $main-monitor
+workspace 9 output $main-monitor
 
 set $ws1 "1"
 set $ws2 "2"

@@ -24,6 +24,7 @@ require('lazy').setup({
   require 'kickstart/plugins/harpoon',
   require 'kickstart/plugins/autopairs',
   require 'kickstart/plugins/oil',
+  require 'kickstart/plugins/lspconfig',
   require 'kickstart/plugins/rustacean',
   require 'kickstart/plugins/dadbod',
 
