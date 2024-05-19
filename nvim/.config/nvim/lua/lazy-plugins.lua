@@ -27,6 +27,8 @@ require('lazy').setup({
   require 'kickstart/plugins/lspconfig',
   require 'kickstart/plugins/rustacean',
   require 'kickstart/plugins/dadbod',
+  require 'kickstart/plugins/copilot',
+  require 'kickstart/plugins/wilder',
 
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
