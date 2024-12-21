@@ -18,6 +18,10 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-w> <C-v>
 
+nnoremap <Space>Y "+Y
+nnoremap <Space>y "+y
+vnoremap <Space>y "+y
+
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
