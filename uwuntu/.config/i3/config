@@ -218,7 +218,7 @@ client.background       $bg
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom --experimental-backend -b
-exec_always --no-startup-id cd ~/Pictures && wal -i pic10.jpg
+exec_always --no-startup-id cd ~/Pictures && wal -i pic3.jpeg
 
 # brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 20%-
@@ -239,8 +239,8 @@ bindsym Ctrl+$mod+F1 exec --no-startup-id maim -o --window $(xdotool getactivewi
 bindsym Ctrl+Shift+F1 exec --no-startup-id maim -o --select | xclip -selection clipboard -t image/png
 
 #monitor layout
-bindsym $mod+p exec ~/.screenlayout/layout-main-monitor.sh
-bindsym $mod+o exec ~/.screenlayout/layout-laptop-monitor.sh
+bindsym $mod+p exec autorandr docked
+bindsym $mod+o exec autorandr mobile
 
 #
 assign [class="Microsoft-edge"] $ws1

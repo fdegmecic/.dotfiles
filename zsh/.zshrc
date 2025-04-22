@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 zstyle ':omz:plugins:nvm' lazy yes
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -108,3 +108,6 @@ export NVM_DIR="$HOME/.config/nvm"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 # eval "$(starship init zsh)"
+
+# Turso
+export PATH="$PATH:/home/fdegmecic/.turso"
