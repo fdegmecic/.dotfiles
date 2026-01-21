@@ -24,6 +24,7 @@
     pkgs.eza
     pkgs.webcord
     pkgs.btop
+    pkgs.stow
     nixCatsPackage
     # pkgs.obsidian
     # pkgs.ghostty
@@ -61,6 +62,27 @@
 
   programs.starship = {
     enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "Filip Degmecic";
+        email = "42947589+fdegmecic@users.noreply.github.com";
+      };
+      init.defaultBranch = "main";
+    };
+  };
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "github.com" = {
+        identityFile = "~/.ssh/id_ed25519";
+      };
+    };
   };
 
   # Neovim via nixCats (defined in ./nvim/)
