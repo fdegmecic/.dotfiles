@@ -25,6 +25,7 @@
     pkgs.webcord
     pkgs.btop
     pkgs.stow
+    pkgs.kanshi
     nixCatsPackage
     # pkgs.obsidian
     # pkgs.ghostty

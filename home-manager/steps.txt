@@ -14,3 +14,18 @@ paru -S blueman
 echo "$HOME/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
 chsh -s ~/.nix-profile/bin/zsh
 
+6. ghostty
+paru -S ghostty
+
+7. noctalia-shell + quickshell
+paru -S quickshell
+paru -S noctalia-shell
+
+8. obsidian
+paru -S obsidian
+
+9. clone dotfiles and stow
+git clone git@github.com:fdegmecic/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow niri noctalia kanshi
+

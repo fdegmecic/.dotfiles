@@ -1,0 +1,10 @@
+# When external monitor is connected: use it, disable laptop screen
+profile docked {
+    output eDP-1 disable
+    output HDMI-A-1 enable mode 1920x1080@120 position 0,0
+}
+
+# When only laptop screen: use it
+profile undocked {
+    output eDP-1 enable mode 1920x1080@60 position 0,0
+}
