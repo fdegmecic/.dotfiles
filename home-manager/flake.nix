@@ -53,6 +53,7 @@
             undotree
             comment-nvim
             tokyonight-nvim
+            pywal-nvim
             vim-dadbod
             vim-dadbod-ui
             vim-dadbod-completion

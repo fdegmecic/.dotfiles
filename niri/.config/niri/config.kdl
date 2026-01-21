@@ -39,7 +39,7 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
-    MOD+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn-sh "qs msg -c noctalia-shell launcher toggle"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
     
@@ -172,7 +172,7 @@ binds {
     spawn-sh-at-startup "qs -c noctalia-shell" // Launch noctalia
 
     prefer-no-csd // Disable program decorations
-    screenshot-path null // Disable screenshot saving
+    screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
 
 // ────────────── Layout Settings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
@@ -266,3 +266,6 @@ binds {
     hotkey-overlay {
         skip-at-startup
     }
+
+include "./noctalia.kdl"
+

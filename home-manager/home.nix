@@ -26,7 +26,10 @@
     pkgs.btop
     pkgs.stow
     pkgs.kanshi
+    pkgs.matugen
     nixCatsPackage
+    pkgs.nerd-fonts.iosevka
+    pkgs.nerd-fonts.jetbrains-mono
     # pkgs.obsidian
     # pkgs.ghostty
     # pkgs.noctalia-shell

@@ -221,7 +221,11 @@ require('nvim-autopairs').setup {}
 require('Comment').setup()
 
 -- Oil
-require('oil').setup()
+require('oil').setup {
+  view_options = {
+    show_hidden = true,
+  },
+}
 keymap('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- Harpoon
