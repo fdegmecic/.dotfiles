@@ -1,0 +1,16 @@
+1. chrome
+paru -S google-chrome
+2. nix 
+sh <(curl -L https://nixos.org/nix/install) --daemon
+or something similar
+3. home manager
+mkdir -p ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+### this first command was for enabling flakes
+nix run home-manager/master -- init --switch
+4. blueman
+paru -S blueman
+5. make zsh default
+echo "$HOME/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
+chsh -s ~/.nix-profile/bin/zsh
+

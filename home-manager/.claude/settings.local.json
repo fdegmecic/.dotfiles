@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ghostty.org)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:docs.noctalia.dev)",
+      "Bash(nix search:*)",
+      "Bash(QT_DEBUG_PLUGINS=1 noctalia-shell:*)",
+      "Bash(pacman:*)",
+      "Bash(paru -Ql:*)",
+      "Bash(qs --help:*)",
+      "Bash(nix-collect-garbage:*)",
+      "Bash(nix store gc:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:nixcats.org)",
+      "Bash(nvim:*)"
+    ]
+  }
+}
