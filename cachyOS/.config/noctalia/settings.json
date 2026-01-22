@@ -17,7 +17,7 @@
         "sortByMostUsed": true,
         "terminalCommand": "xterm -e",
         "useApp2Unit": false,
-        "viewMode": "list"
+        "viewMode": "grid"
     },
     "audio": {
         "cavaFrameRate": 30,
@@ -191,7 +191,7 @@
         "darkMode": true,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
-        "matugenSchemeType": "scheme-fruit-salad",
+        "matugenSchemeType": "scheme-fidelity",
         "predefinedScheme": "Noctalia (default)",
         "schedulingMode": "off",
         "useWallpaperColors": true
@@ -514,7 +514,7 @@
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "",
+        "wallhavenQuery": "space ",
         "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",

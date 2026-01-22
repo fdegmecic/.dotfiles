@@ -1,7 +1,6 @@
-# Dotfiles
 CachyOS + niri + noctalia + home-manager rice
 
-> TODO: ansible script for these steps
+> TODO: ansible script 
 
 ### 1. Nix
 ```bash
@@ -17,23 +16,35 @@ nix run home-manager/master -- init --switch
 
 ### 3. Paru Packages
 ```bash
-paru -S google-chrome obsidian anki blueman ghostty quickshell noctalia-shell hyprlock hypridle
+paru -S google-chrome obsidian anki blueman ghostty quickshell noctalia-shell hyprlock hypridle jetbrains-toolbox docker docker-compose
 ```
 
-### 4. Make Zsh Default
+### 4. Docker Setup
+```bash
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+```
+Then log out/in for group to take effect.
+
+### 5. Rust
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+### 6. Make Zsh Default
 ```bash
 echo "$HOME/.nix-profile/bin/zsh" | sudo tee -a /etc/shells
 chsh -s ~/.nix-profile/bin/zsh
 ```
 
-### 5. Clone Dotfiles and Stow
+### 7. Clone Dotfiles and Stow
 ```bash
 git clone git@github.com:fdegmecic/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 stow cachyOS
 ```
 
-### 6. Home Manager Config
+### 8. Home Manager Config
 ```bash
 ln -sf ~/.dotfiles/home-manager ~/.config/home-manager
 cd ~/.config/home-manager

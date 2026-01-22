@@ -21,6 +21,13 @@ input {
     workspace-auto-back-and-forth // Enable workspace back & forth switching
 }
 
+// ────────────── Gestures ──────────────
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 // ────────────── Output Configuration ──────────────
 // You can run `niri msg outputs` to get the correct name for your displays.
 // You will have to remove "/-" and edit it before it takes effect.
@@ -40,11 +47,11 @@ binds {
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn-sh "qs msg -c noctalia-shell launcher toggle"; }
-    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "google-chrome"; }
     MOD+A                               hotkey-overlay-title="Lock Screen" { spawn-sh "hyprlock"; }
     
     // Please choose your own file manager
-    MOD+E                             hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
+    MOD+E                             hotkey-overlay-title="File Manager: yazi" { spawn-sh "ghostty -e yazi"; }
 
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -70,29 +77,29 @@ binds {
     MOD+DOWN                            { focus-window-down; }
     MOD+J                               { focus-window-down; }
 
-    MOD+CTRL+LEFT                       { move-column-left; }
-    MOD+CTRL+H                          { move-column-left; }
-    MOD+CTRL+RIGHT                      { move-column-right; }
-    MOD+CTRL+L                          { move-column-right; }
-    MOD+CTRL+UP                         { move-window-up; }
-    MOD+CTRL+K                          { move-window-up; }
-    MOD+CTRL+DOWN                       { move-window-down; }
-    MOD+CTRL+J                          { move-window-down; }
+    MOD+SHIFT+LEFT                      { move-column-left; }
+    MOD+SHIFT+H                         { move-column-left; }
+    MOD+SHIFT+RIGHT                     { move-column-right; }
+    MOD+SHIFT+L                         { move-column-right; }
+    MOD+SHIFT+UP                        { move-window-up; }
+    MOD+SHIFT+K                         { move-window-up; }
+    MOD+SHIFT+DOWN                      { move-window-down; }
+    MOD+SHIFT+J                         { move-window-down; }
 
     MOD+HOME                            { focus-column-first; }
     MOD+END                             { focus-column-last; }
     MOD+CTRL+HOME                       { move-column-to-first; }
     MOD+CTRL+END                        { move-column-to-last; }
 
-    MOD+SHIFT+LEFT                      { focus-monitor-left; }
-    MOD+SHIFT+RIGHT                     { focus-monitor-right; }
-    MOD+SHIFT+UP                        { focus-monitor-up; }
-    MOD+SHIFT+DOWN                      { focus-monitor-down; }
+    // MOD+SHIFT+LEFT                      { focus-monitor-left; }
+    // MOD+SHIFT+RIGHT                     { focus-monitor-right; }
+    // MOD+SHIFT+UP                        { focus-monitor-up; }
+    // MOD+SHIFT+DOWN                      { focus-monitor-down; }
 
-    MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
-    MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
-    MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
-    MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
+    // MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
+    // MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
+    // MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
+    // MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
 
     // ─── Workspace Switching ───
     MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-down; }
@@ -120,20 +127,21 @@ binds {
     MOD+8                               { focus-workspace 8; }
     MOD+9                               { focus-workspace 9; }
 
-    MOD+CTRL+1                          { move-column-to-workspace 1; }
-    MOD+CTRL+2                          { move-column-to-workspace 2; }
-    MOD+CTRL+3                          { move-column-to-workspace 3; }
-    MOD+CTRL+4                          { move-column-to-workspace 4; }
-    MOD+CTRL+5                          { move-column-to-workspace 5; }
-    MOD+CTRL+6                          { move-column-to-workspace 6; }
-    MOD+CTRL+7                          { move-column-to-workspace 7; }
-    MOD+CTRL+8                          { move-column-to-workspace 8; }
-    MOD+CTRL+9                          { move-column-to-workspace 9; }
+    MOD+SHIFT+1                         { move-column-to-workspace 1; }
+    MOD+SHIFT+2                         { move-column-to-workspace 2; }
+    MOD+SHIFT+3                         { move-column-to-workspace 3; }
+    MOD+SHIFT+4                         { move-column-to-workspace 4; }
+    MOD+SHIFT+5                         { move-column-to-workspace 5; }
+    MOD+SHIFT+6                         { move-column-to-workspace 6; }
+    MOD+SHIFT+7                         { move-column-to-workspace 7; }
+    MOD+SHIFT+8                         { move-column-to-workspace 8; }
+    MOD+SHIFT+9                         { move-column-to-workspace 9; }
 
     MOD+TAB                             { focus-workspace-previous; }
 
     // ─── Layout Controls ───
-    MOD+SHIFT+F                          { expand-column-to-available-width; }
+    MOD+SHIFT+F                          { fullscreen-window; }
+    MOD+R                               { switch-preset-column-width; }
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
     MOD+MINUS                           { set-column-width "-10%"; }
@@ -143,7 +151,7 @@ binds {
 
     // ─── Modes ───
     MOD+T                               { toggle-window-floating; }
-    MOD+F                               { fullscreen-window; }
+    MOD+F                               { expand-column-to-available-width; }
     MOD+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
@@ -182,9 +190,9 @@ binds {
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
-            proportion 0.33333
             proportion 0.5
             proportion 0.66667
+            proportion 0.33333
         }
 
         focus-ring {
@@ -244,6 +252,26 @@ binds {
     window-rule {
         match app-id=r#"firefox$"# title="^Picture-in-Picture$"
         open-floating true // Always float Firefox PiP windows
+    }
+
+    window-rule {
+        match app-id="google-chrome"
+        open-on-workspace "1"
+    }
+
+    window-rule {
+        match app-id="jetbrains-webstorm"
+        open-on-workspace "2"
+    }
+
+    window-rule {
+        match app-id="WebCord"
+        open-on-workspace "3"
+    }
+
+    window-rule {
+        match app-id="obsidian"
+        open-on-workspace "5"
     }
 
     window-rule {

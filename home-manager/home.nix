@@ -36,6 +36,11 @@
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.stripe-cli
     pkgs.cloudflared
+    pkgs.claude-code
+    pkgs.fnm
+    pkgs.bun
+    pkgs.ast-grep
+    # pkgs.fastfetch
     # pkgs.obsidian
     # pkgs.ghostty
     # pkgs.noctalia-shell
@@ -62,6 +67,7 @@
 
     initContent = ''
       export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin:$PATH"
+      eval "$(fnm env --use-on-cd)"
     '';
   };
 
