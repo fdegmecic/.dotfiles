@@ -130,7 +130,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- ============================================================================
 -- COLORSCHEME
 -- ============================================================================
-vim.cmd [[colorscheme tokyonight-moon]]
+-- Use pywal colors if available, fallback to tokyonight
+local ok, _ = pcall(vim.cmd, 'colorscheme pywal')
+if not ok then
+  vim.cmd [[colorscheme tokyonight-moon]]
+end
 
 -- ============================================================================
 -- PLUGIN CONFIGS
@@ -196,7 +200,7 @@ require('gitsigns').setup {
 -- Lualine
 require('lualine').setup {
   options = {
-    theme = 'tokyonight',
+    theme = 'auto',
     icons_enabled = true,
   },
 }

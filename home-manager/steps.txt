@@ -24,7 +24,10 @@ paru -S noctalia-shell
 8. obsidian
 paru -S obsidian
 
-9. clone dotfiles and stow
+9. hyprlock + hypridle
+paru -S hyprlock hypridle
+
+10. clone dotfiles and stow
 git clone git@github.com:fdegmecic/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 stow niri noctalia kanshi

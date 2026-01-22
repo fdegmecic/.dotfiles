@@ -27,9 +27,15 @@
     pkgs.stow
     pkgs.kanshi
     pkgs.matugen
+    pkgs.pywal
+    # pkgs.hyprlock
+    # pkgs.hypridle
+    pkgs.brightnessctl
     nixCatsPackage
     pkgs.nerd-fonts.iosevka
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.stripe-cli
+    pkgs.cloudflared
     # pkgs.obsidian
     # pkgs.ghostty
     # pkgs.noctalia-shell

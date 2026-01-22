@@ -41,7 +41,7 @@ binds {
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn-sh "qs msg -c noctalia-shell launcher toggle"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
-    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
+    MOD+A                               hotkey-overlay-title="Lock Screen" { spawn-sh "hyprlock"; }
     
     // Please choose your own file manager
     MOD+E                             hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
@@ -166,9 +166,9 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
     spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
-    spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
-    spawn-sh-at-startup "swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
+    spawn-sh-at-startup "swww-daemon" // Wallpaper daemon (noctalia sets the wallpaper)
     spawn-sh-at-startup "kanshi" // Auto-switch monitor profiles
+    spawn-sh-at-startup "hypridle" // Idle management (lock, dim, suspend)
     spawn-sh-at-startup "qs -c noctalia-shell" // Launch noctalia
 
     prefer-no-csd // Disable program decorations
@@ -178,7 +178,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 16 // Gap between windows
+        gaps 12 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
@@ -188,7 +188,7 @@ binds {
         }
 
         focus-ring {
-            width 3
+            width 2
             active-color "#00ac89"
             inactive-color "#505050"
         }
@@ -247,7 +247,7 @@ binds {
     }
 
     window-rule {
-        geometry-corner-radius 20 // Set every window radius to 20
+        geometry-corner-radius 15 // Set every window radius to 15
         clip-to-geometry true
     }
 
