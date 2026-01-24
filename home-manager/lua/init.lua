@@ -147,7 +147,10 @@ require('telescope').setup {
     sorting_strategy = 'ascending',
   },
   pickers = {
-    find_files = { hidden = true },
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = { '^.git/' },
+    },
   },
   extensions = {
     fzf = {
@@ -183,7 +186,7 @@ keymap('n', '<leader>/', function()
   })
 end, { desc = 'Fuzzily search in current buffer' })
 keymap('n', '<leader>sn', function()
-  builtin.find_files { cwd = vim.fn.stdpath 'config' }
+  builtin.find_files { cwd = vim.fn.expand '~/.dotfiles/home-manager/lua' }
 end, { desc = '[S]earch [N]eovim files' })
 
 -- Gitsigns
@@ -232,6 +235,20 @@ require('oil').setup {
 }
 keymap('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
+-- Cloak (streamer mode for .env files)
+require('cloak').setup {
+  enabled = true,
+  cloak_character = '*',
+  highlight_group = 'Comment',
+  patterns = {
+    {
+      file_pattern = { '.env*', '*.env', 'credentials*', '*secret*' },
+      cloak_pattern = '=.+',
+    },
+  },
+}
+keymap('n', '<leader>ct', '<cmd>CloakToggle<CR>', { desc = '[C]loak [T]oggle' })
+
 -- Harpoon
 local harpoon = require 'harpoon'
 harpoon:setup()
@@ -278,8 +295,21 @@ vim.lsp.config('html', { capabilities = capabilities })
 vim.lsp.config('cssls', { capabilities = capabilities })
 vim.lsp.config('eslint', { capabilities = capabilities })
 
+vim.lsp.config('rust_analyzer', {
+  capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      inlayHints = {
+        chainingHints = { enable = true },
+        typeHints = { enable = true },
+        parameterHints = { enable = true },
+      },
+    },
+  },
+})
+
 -- Enable all configured LSPs
-vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint' })
+vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'rust_analyzer' })
 
 -- LSP keymaps on attach
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -299,6 +329,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
     map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+
+    if vim.lsp.inlay_hint then
+      map('<leader>ih', function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, 'Toggle Inlay Hints')
+    end
   end,
 })
 

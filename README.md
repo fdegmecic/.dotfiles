@@ -48,10 +48,16 @@ chsh -s ~/.nix-profile/bin/zsh
 
 ### 7. Paru Packages
 ```bash
-paru -S google-chrome obsidian anki blueman ghostty quickshell noctalia-shell hyprlock hypridle jetbrains-toolbox docker docker-compose
+paru -S google-chrome obsidian anki ghostty quickshell noctalia-shell hyprlock hypridle jetbrains-toolbox docker docker-compose obs-studio
 ```
 
-### 8. Docker Setup
+### 8. Hyprlock Wallpaper
+```bash
+mkdir -p ~/.cache/hyprlock
+```
+Noctalia hook will symlink the wallpaper here for hyprlock's blur background.
+
+### 9. Docker Setup
 ```bash
 sudo systemctl enable --now docker
 sudo usermod -aG docker $USER

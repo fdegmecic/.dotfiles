@@ -58,6 +58,7 @@
             vim-dadbod-ui
             vim-dadbod-completion
             rustaceanvim
+            cloak-nvim
           ];
         };
 
