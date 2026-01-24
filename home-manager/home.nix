@@ -48,6 +48,7 @@
   ];
 
   home.sessionPath = [
+    "$HOME/.cargo/bin"
     "$HOME/.nix-profile/bin"
     "/nix/var/nix/profiles/default/bin"
   ];
