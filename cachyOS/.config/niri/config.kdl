@@ -45,13 +45,13 @@ binds {
     MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty --working-directory=/home/fdegmecic"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn-sh "qs msg -c noctalia-shell launcher toggle"; }
     MOD+B                               hotkey-overlay-title="Open Browser: Chrome" { spawn-sh "google-chrome-stable"; }
     MOD+A                               hotkey-overlay-title="Lock Screen" { spawn-sh "hyprlock"; }
     
     // Please choose your own file manager
-    MOD+E                             hotkey-overlay-title="File Manager: yazi" { spawn-sh "ghostty -e yazi"; }
+    MOD+E                             hotkey-overlay-title="File Manager: yazi" { spawn-sh "ghostty --working-directory=/home/fdegmecic -e yazi"; }
 
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.

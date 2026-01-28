@@ -12,6 +12,7 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+
       inherit (nixCats) utils;
       luaPath = ./lua;
 
@@ -70,6 +71,7 @@
             tailwindcss-language-server
             vscode-langservers-extracted
             rust-analyzer
+            nil
             stylua
             prettierd
             eslint_d

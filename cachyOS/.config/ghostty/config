@@ -49,4 +49,4 @@
 # resize-overlay-duration = 4s 200ms
 theme = noctalia
 font-family = JetBrainsMono Nerd Font
-window-inherit-working-directory = false
+window-inherit-working-directory = true

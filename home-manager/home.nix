@@ -40,6 +40,9 @@
     pkgs.fnm
     pkgs.bun
     pkgs.ast-grep
+    pkgs.sshfs
+    pkgs.postgresql
+    pkgs.sqlx-cli
     # pkgs.fastfetch
     # pkgs.obsidian
     # pkgs.ghostty
@@ -62,8 +65,12 @@
     shellAliases = {
       ll = "ls -la";
       update = "sudo pacman -Syu";
-      rebuild = "home-manager switch --flake ~/.dotfiles/home-manager#fdegmecic-home-manager";
+      rebuild = "home-manager switch --flake ~/.dotfiles/home-manager#fdegmecic-home-manager && exec zsh";
       nix-update = "nix flake update --flake ~/.dotfiles/home-manager && home-manager switch --flake ~/.dotfiles/home-manager#fdegmecic-home-manager";
+      mount-homelab = "mkdir -p ~/mnt/homelab && sshfs fdegmecic@fdegmecic-homelab.local:/ ~/mnt/homelab";
+      umount-homelab = "fusermount -u ~/mnt/homelab";
+      homelab = "z ~/personal/nix-homelab && nvim .";
+      homelab-deploy = "rsync -avz --delete ~/personal/nix-homelab/ fdegmecic-homelab.local:/tmp/nixos/ && ssh fdegmecic-homelab 'sudo cp -r /tmp/nixos/* /etc/nixos/ && sudo nixos-rebuild switch'";
     };
 
     initContent = ''
@@ -99,6 +106,11 @@
       "github.com" = {
         identityFile = "~/.ssh/id_ed25519";
       };
+      "fdegmecic-homelab" = {
+        hostname = "fdegmecic-homelab.local";
+        user = "fdegmecic";
+        identityFile = "~/.ssh/id_ed25519";
+      };
     };
   };
 
@@ -116,16 +128,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home-manager/ideavimrc";
   };
 
   # Home Manager can also manage your environment variables through

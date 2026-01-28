@@ -294,6 +294,7 @@ vim.lsp.config('tailwindcss', { capabilities = capabilities })
 vim.lsp.config('html', { capabilities = capabilities })
 vim.lsp.config('cssls', { capabilities = capabilities })
 vim.lsp.config('eslint', { capabilities = capabilities })
+vim.lsp.config('nil_ls', { capabilities = capabilities })
 
 vim.lsp.config('rust_analyzer', {
   capabilities = capabilities,
@@ -309,7 +310,7 @@ vim.lsp.config('rust_analyzer', {
 })
 
 -- Enable all configured LSPs
-vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'rust_analyzer' })
+vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'rust_analyzer', 'nil_ls' })
 
 -- LSP keymaps on attach
 vim.api.nvim_create_autocmd('LspAttach', {

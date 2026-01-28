@@ -1,10 +1,24 @@
 # When only laptop screen
 profile undocked {
-    output eDP-1 enable mode 1920x1080@60 position 0,0
+    output eDP-1 enable mode 2880x1800@120Hz position 0,0 scale 1.75
+    exec pkill -x qs; sleep 0.5 && qs -c noctalia-shell &
+}
+
+# Fallback - enable laptop screen if nothing else matches
+profile fallback {
+    output eDP-1 enable
 }
 
 # When external HDMI monitor is connected
 profile docked {
     output eDP-1 disable
     output HDMI-A-1 enable position 0,0
+    exec pkill -x qs; sleep 0.5 && qs -c noctalia-shell &
+}
+
+# When work monitor (Dell U2723QE via DP) is connected
+profile work {
+    output eDP-1 disable
+    output DP-1 enable mode 3840x2160@60 position 0,0 scale 1.5
+    exec pkill -x qs; sleep 0.5 && qs -c noctalia-shell &
 }
