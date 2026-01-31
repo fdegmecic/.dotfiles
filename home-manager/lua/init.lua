@@ -105,13 +105,27 @@ keymap('n', '<A-.>', '<Cmd>+tabnext<CR>')
 
 -- DBUI toggle
 keymap('n', '<leader>db', function()
-  local current_tab_count = #vim.api.nvim_list_tabpages()
-  if current_tab_count > 1 then
-    vim.cmd '$tabclose'
-  else
-    vim.cmd 'tabnew'
-    vim.cmd 'DBUI'
+  local current_tab = vim.api.nvim_get_current_tabpage()
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(current_tab)) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local ft = vim.bo[buf].filetype
+    if ft == 'dbui' or ft == 'dbout' or ft == 'sql' then
+      vim.cmd 'tabprevious'
+      return
+    end
   end
+  for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local ft = vim.bo[buf].filetype
+      if ft == 'dbui' or ft == 'dbout' or ft == 'sql' then
+        vim.api.nvim_set_current_tabpage(tab)
+        return
+      end
+    end
+  end
+  vim.cmd 'tabnew'
+  vim.cmd 'DBUI'
 end)
 
 -- ============================================================================
