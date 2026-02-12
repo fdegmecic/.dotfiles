@@ -16,9 +16,16 @@ profile docked {
     exec pkill -x qs; sleep 0.5 && qs -c noctalia-shell &
 }
 
-# When work monitor (Dell U2723QE via DP) is connected
+# When work monitor (Dell U2723QE via DP-1) is connected
 profile work {
     output eDP-1 disable
     output DP-1 enable mode 3840x2160@60 position 0,0 scale 1.5
+    exec pkill -x qs; sleep 0.5 && qs -c noctalia-shell &
+}
+
+# When work monitor (Dell U2725QE via DP-3) is connected
+profile work-dp3 {
+    output eDP-1 disable
+    output DP-3 enable mode 3840x2160@60 position 0,0 scale 1.5
     exec pkill -x qs; sleep 0.5 && qs -c noctalia-shell &
 }
