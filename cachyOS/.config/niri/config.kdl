@@ -46,7 +46,7 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty --working-directory=/home/fdegmecic"; }
-    MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn-sh "qs msg -c noctalia-shell launcher toggle"; }
+    MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn-sh "qs ipc -c noctalia-shell call launcher toggle"; }
     MOD+B                               hotkey-overlay-title="Open Browser: Chrome" { spawn-sh "google-chrome-stable"; }
     MOD+A                               hotkey-overlay-title="Lock Screen" { spawn-sh "hyprlock"; }
     
