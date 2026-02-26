@@ -48,7 +48,7 @@ chsh -s ~/.nix-profile/bin/zsh
 
 ### 7. Paru Packages
 ```bash
-paru -S google-chrome obsidian anki ghostty quickshell noctalia-shell hyprlock hypridle jetbrains-toolbox docker docker-compose obs-studio papirus-icon-theme dumbpipe k6
+paru -S google-chrome obsidian anki ghostty quickshell noctalia-shell hyprlock hypridle jetbrains-toolbox docker docker-compose obs-studio papirus-icon-theme dumbpipe k6 vicinae
 ```
 
 ### 8. Hyprlock Wallpaper

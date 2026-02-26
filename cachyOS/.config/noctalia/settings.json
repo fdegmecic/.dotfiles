@@ -392,7 +392,7 @@
         "screenUnlock": "",
         "session": "",
         "startup": "",
-        "wallpaperChange": "sh -c 'sleep 0.5 && wp=$(jq -r \".wallpapers | to_entries | .[0].value\" ~/.cache/noctalia/wallpapers.json) && wal -n -i \"$wp\" && ln -sf \"$wp\" ~/.cache/hyprlock/wallpaper.jpg'"
+        "wallpaperChange": "sh -c 'sleep 0.5 && wp=$(jq -r \".wallpapers | to_entries | .[0].value\" ~/.cache/noctalia/wallpapers.json) && wal -n -i \"$wp\" && ln -sf \"$wp\" ~/.cache/hyprlock/wallpaper.jpg && /home/fdegmecic/.local/bin/vicinae-wal-theme'"
     },
     "location": {
         "analogClockInCalendar": false,
