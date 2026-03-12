@@ -1,0 +1,3 @@
+[templates.vicinae]
+input_path = "~/.config/noctalia/templates/vicinae.toml"
+output_path = "~/.local/share/vicinae/themes/wal.toml"

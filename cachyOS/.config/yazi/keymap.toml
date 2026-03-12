@@ -1,0 +1,4 @@
+[[manager.prepend_keymap]]
+on   = ["b"]
+run  = 'shell "xdg-open $0" --confirm'
+desc = "Open in browser"

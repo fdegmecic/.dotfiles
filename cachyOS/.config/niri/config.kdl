@@ -45,7 +45,7 @@ binds {
     MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty --working-directory=/home/fdegmecic"; }
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty --working-directory=/home/fdegmecic & sleep 0.3 && niri msg action center-column"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn "vicinae" "toggle"; }
     MOD+B                               hotkey-overlay-title="Open Browser: Chrome" { spawn-sh "google-chrome-stable"; }
     MOD+A                               hotkey-overlay-title="Lock Screen" { spawn-sh "hyprlock"; }
@@ -191,9 +191,10 @@ binds {
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
+            proportion 0.33333
             proportion 0.5
             proportion 0.66667
-            proportion 0.33333
+            proportion 0.9
         }
 
         focus-ring {
