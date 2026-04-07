@@ -67,7 +67,7 @@
           general = with pkgs; [
             lua-language-server
             pyright
-            nodePackages.typescript-language-server
+            typescript-language-server
             tailwindcss-language-server
             vscode-langservers-extracted
             rust-analyzer
