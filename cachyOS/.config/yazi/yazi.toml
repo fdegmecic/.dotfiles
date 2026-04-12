@@ -1,0 +1,9 @@
+[opener]
+pdf = [
+  { run = 'okular "$@"', desc = "Open in Okular", orphan = true },
+]
+
+[open]
+rules = [
+  { mime = "application/pdf", use = "pdf" },
+]
