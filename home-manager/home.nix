@@ -36,7 +36,6 @@
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.stripe-cli
     pkgs.cloudflared
-    pkgs.claude-code
     pkgs.fnm
     pkgs.bun
     pkgs.ast-grep
