@@ -494,7 +494,7 @@
         "disableWallpaper": true
     },
     "notifications": {
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.8,
         "clearDismissed": true,
         "criticalUrgencyDuration": 15,
         "density": "default",
@@ -516,11 +516,11 @@
             "normal": true
         },
         "sounds": {
-            "criticalSoundFile": "",
+            "criticalSoundFile": "/home/fdegmecic/Music/tf2-notification-sound.mp3",
             "enabled": false,
-            "excludedApps": "discord,firefox,chrome,chromium,edge",
-            "lowSoundFile": "",
-            "normalSoundFile": "",
+            "excludedApps": "firefox,chrome,chromium,edge",
+            "lowSoundFile": "/home/fdegmecic/Music/tf2-notification-sound.mp3",
+            "normalSoundFile": "/home/fdegmecic/Music/tf2-notification-sound.mp3",
             "separateSounds": false,
             "volume": 0.5
         }
