@@ -28,6 +28,8 @@ opt.cursorline = true
 opt.hlsearch = true
 opt.termguicolors = true
 opt.scrolloff = 8
+opt.fillchars = { eob = ' ' }
+opt.winborder = 'rounded'
 
 -- ============================================================================
 -- KEYMAPS
@@ -98,6 +100,10 @@ keymap('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 keymap('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+keymap('t', '<C-h>', [[<C-\><C-n><C-w>h]], { desc = 'Move focus left from terminal' })
+keymap('t', '<C-l>', [[<C-\><C-n><C-w>l]], { desc = 'Move focus right from terminal' })
+keymap('t', '<C-j>', [[<C-\><C-n><C-w>j]], { desc = 'Move focus down from terminal' })
+keymap('t', '<C-k>', [[<C-\><C-n><C-w>k]], { desc = 'Move focus up from terminal' })
 
 -- Tab navigation
 keymap('n', '<A-,>', '<Cmd>-tabnext<CR>')
@@ -149,6 +155,20 @@ local ok, _ = pcall(vim.cmd, 'colorscheme pywal')
 if not ok then
   vim.cmd [[colorscheme tokyonight-moon]]
 end
+
+local function apply_theme_tweaks()
+  for _, group in ipairs({
+    'Normal', 'NormalNC', 'CursorLine',
+    'EndOfBuffer', 'SignColumn', 'LineNr', 'FoldColumn', 'MsgArea',
+  }) do
+    vim.api.nvim_set_hl(0, group, { bg = 'none' })
+  end
+  vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#ffffff' })
+  vim.api.nvim_set_hl(0, 'FloatTitle', { fg = '#ffffff', bold = true })
+end
+apply_theme_tweaks()
+vim.api.nvim_create_autocmd('ColorScheme', { pattern = '*', callback = apply_theme_tweaks })
+vim.api.nvim_create_autocmd('VimEnter', { callback = apply_theme_tweaks })
 
 -- ============================================================================
 -- PLUGIN CONFIGS
@@ -206,11 +226,11 @@ end, { desc = '[S]earch [N]eovim files' })
 -- Gitsigns
 require('gitsigns').setup {
   signs = {
-    add = { text = '+' },
-    change = { text = '~' },
+    add = { text = '▎' },
+    change = { text = '▎' },
     delete = { text = '_' },
     topdelete = { text = '‾' },
-    changedelete = { text = '~' },
+    changedelete = { text = '▎' },
   },
 }
 
@@ -226,9 +246,11 @@ require('lualine').setup {
 require('todo-comments').setup {}
 
 -- Indent Blankline
+vim.api.nvim_set_hl(0, 'IblScope', { link = 'Function' })
+vim.api.nvim_set_hl(0, 'IblIndent', { fg = '#3a3a3a', nocombine = true })
 require('ibl').setup {
-  indent = { char = '▏' },
-  scope = { enabled = true },
+  indent = { char = '▏', highlight = 'IblIndent' },
+  scope = { enabled = true, show_start = false, show_end = false },
 }
 
 -- Mini
@@ -272,6 +294,14 @@ keymap('n', '<leader>1', function() harpoon:list():select(1) end, { desc = 'Harp
 keymap('n', '<leader>2', function() harpoon:list():select(2) end, { desc = 'Harpoon file 2' })
 keymap('n', '<leader>3', function() harpoon:list():select(3) end, { desc = 'Harpoon file 3' })
 keymap('n', '<leader>4', function() harpoon:list():select(4) end, { desc = 'Harpoon file 4' })
+
+-- Claude Code
+require('claudecode').setup()
+keymap('n', '<leader>cc', '<cmd>ClaudeCode<CR>', { desc = '[C]laude [C]ode toggle' })
+keymap('n', '<leader>cf', '<cmd>ClaudeCodeFocus<CR>', { desc = '[C]laude [F]ocus' })
+keymap('n', '<leader>cb', '<cmd>ClaudeCodeAdd %<CR>', { desc = '[C]laude add [B]uffer' })
+keymap('v', '<leader>cs', '<cmd>ClaudeCodeSend<CR>', { desc = '[C]laude [S]end selection' })
+keymap('n', '<leader>cr', '<cmd>ClaudeCode --resume<CR>', { desc = '[C]laude [R]esume' })
 
 -- Copilot
 require('copilot').setup {

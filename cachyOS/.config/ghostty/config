@@ -50,3 +50,4 @@
 theme = noctalia
 font-family = JetBrainsMono Nerd Font
 window-inherit-working-directory = true
+background-opacity = 0.85

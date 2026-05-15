@@ -11,7 +11,14 @@
   outputs = { self, nixpkgs, home-manager, nixCats, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      extra_pkg_config = {
+        allowUnfreePredicate = pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) [ "pywal.nvim" ];
+      };
+      pkgs = import nixpkgs {
+        inherit system;
+        config = extra_pkg_config;
+      };
 
       inherit (nixCats) utils;
       luaPath = ./lua;
@@ -60,6 +67,7 @@
             vim-dadbod-completion
             rustaceanvim
             cloak-nvim
+            claudecode-nvim
           ];
         };
 
@@ -85,7 +93,7 @@
       packageDefinitions = {
         nvim = { pkgs, name, ... }: {
           settings = {
-            wrapRc = true;
+            wrapRc = false;
             aliases = [ "vim" "vi" ];
           };
           categories = {
@@ -97,7 +105,7 @@
       defaultPackageName = "nvim";
 
       nixCatsBuilder = utils.baseBuilder luaPath {
-        inherit nixpkgs system dependencyOverlays;
+        inherit nixpkgs system dependencyOverlays extra_pkg_config;
       } categoryDefinitions packageDefinitions;
 
       defaultPackage = nixCatsBuilder defaultPackageName;

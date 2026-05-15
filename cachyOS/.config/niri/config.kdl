@@ -277,6 +277,13 @@ binds {
     }
 
     window-rule {
+        match app-id="com.mitchellh.ghostty"
+        background-effect {
+            blur true
+        }
+    }
+
+    window-rule {
         geometry-corner-radius 15 // Set every window radius to 15
         clip-to-geometry true
     }
@@ -287,6 +294,7 @@ binds {
     environment {
         DISPLAY ":1"
         ELECTRON_OZONE_PLATFORM_HINT "auto"
+        MOZ_ENABLE_WAYLAND "1"
         QT_QPA_PLATFORM "wayland"
         QT_QPA_PLATFORMTHEME "gtk3"
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
