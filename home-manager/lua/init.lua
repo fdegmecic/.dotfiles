@@ -54,7 +54,7 @@ keymap({ 'n', 'v' }, '<leader>y', [["+y]])
 keymap('n', '<leader>Y', [["+Y]])
 
 -- Make file executable
-keymap('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
+keymap('n', '<leader>X', '<cmd>!chmod +x %<CR>', { silent = true })
 
 -- Tmux sessionizer
 keymap('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
@@ -303,6 +303,39 @@ keymap('n', '<leader>cb', '<cmd>ClaudeCodeAdd %<CR>', { desc = '[C]laude add [B]
 keymap('v', '<leader>cs', '<cmd>ClaudeCodeSend<CR>', { desc = '[C]laude [S]end selection' })
 keymap('n', '<leader>cr', '<cmd>ClaudeCode --resume<CR>', { desc = '[C]laude [R]esume' })
 
+-- Which-Key
+require('which-key').setup()
+
+-- Conform (formatter)
+require('conform').setup {
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    javascript = { 'prettierd', 'eslint_d' },
+    typescript = { 'prettierd', 'eslint_d' },
+    javascriptreact = { 'prettierd', 'eslint_d' },
+    typescriptreact = { 'prettierd', 'eslint_d' },
+    json = { 'prettierd' },
+    yaml = { 'prettierd' },
+    markdown = { 'prettierd' },
+    css = { 'prettierd' },
+    html = { 'prettierd' },
+  },
+  format_on_save = { timeout_ms = 1000, lsp_format = 'fallback' },
+}
+keymap({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, { desc = '[F]ormat buffer' })
+
+-- Trouble
+require('trouble').setup()
+keymap('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', { desc = 'Diagnostics (Trouble)' })
+keymap('n', '<leader>xb', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer diagnostics (Trouble)' })
+keymap('n', '<leader>xs', '<cmd>Trouble symbols toggle focus=false<CR>', { desc = 'Symbols (Trouble)' })
+keymap('n', '<leader>xl', '<cmd>Trouble lsp toggle focus=false win.position=right<CR>', { desc = 'LSP refs (Trouble)' })
+keymap('n', '<leader>xq', '<cmd>Trouble qflist toggle<CR>', { desc = 'Quickfix (Trouble)' })
+keymap('n', '<leader>xt', '<cmd>Trouble todo toggle<CR>', { desc = 'Todo (Trouble)' })
+
+-- Render Markdown
+require('render-markdown').setup()
+
 -- Copilot
 require('copilot').setup {
   suggestion = { enabled = false },
@@ -340,21 +373,24 @@ vim.lsp.config('cssls', { capabilities = capabilities })
 vim.lsp.config('eslint', { capabilities = capabilities })
 vim.lsp.config('nil_ls', { capabilities = capabilities })
 
-vim.lsp.config('rust_analyzer', {
-  capabilities = capabilities,
-  settings = {
-    ['rust-analyzer'] = {
-      inlayHints = {
-        chainingHints = { enable = true },
-        typeHints = { enable = true },
-        parameterHints = { enable = true },
+-- rust-analyzer is managed by rustaceanvim, not lspconfig
+vim.g.rustaceanvim = {
+  server = {
+    capabilities = capabilities,
+    default_settings = {
+      ['rust-analyzer'] = {
+        inlayHints = {
+          chainingHints = { enable = true },
+          typeHints = { enable = true },
+          parameterHints = { enable = true },
+        },
       },
     },
   },
-})
+}
 
--- Enable all configured LSPs
-vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'rust_analyzer', 'nil_ls' })
+-- Enable all configured LSPs (rust handled by rustaceanvim)
+vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'nil_ls' })
 
 -- LSP keymaps on attach
 vim.api.nvim_create_autocmd('LspAttach', {

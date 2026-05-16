@@ -68,6 +68,10 @@
             rustaceanvim
             cloak-nvim
             claudecode-nvim
+            which-key-nvim
+            conform-nvim
+            trouble-nvim
+            render-markdown-nvim
           ];
         };
 
