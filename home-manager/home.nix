@@ -101,14 +101,14 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "github.com" = {
-        identityFile = "~/.ssh/id_ed25519";
+        IdentityFile = "~/.ssh/id_ed25519";
       };
       "fdegmecic-homelab" = {
-        hostname = "fdegmecic-homelab.local";
-        user = "fdegmecic";
-        identityFile = "~/.ssh/id_ed25519";
+        HostName = "fdegmecic-homelab.local";
+        User = "fdegmecic";
+        IdentityFile = "~/.ssh/id_ed25519";
       };
     };
   };

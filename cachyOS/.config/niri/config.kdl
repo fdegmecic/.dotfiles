@@ -284,6 +284,13 @@ binds {
     }
 
     window-rule {
+        match app-id="vesktop"
+        background-effect {
+            blur true
+        }
+    }
+
+    window-rule {
         geometry-corner-radius 15 // Set every window radius to 15
         clip-to-geometry true
     }
