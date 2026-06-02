@@ -84,6 +84,7 @@
             vscode-langservers-extracted
             rust-analyzer
             nil
+            elixir-ls
             stylua
             prettierd
             eslint_d

@@ -372,6 +372,7 @@ vim.lsp.config('html', { capabilities = capabilities })
 vim.lsp.config('cssls', { capabilities = capabilities })
 vim.lsp.config('eslint', { capabilities = capabilities })
 vim.lsp.config('nil_ls', { capabilities = capabilities })
+vim.lsp.config('elixirls', { capabilities = capabilities })
 
 -- rust-analyzer is managed by rustaceanvim, not lspconfig
 vim.g.rustaceanvim = {
@@ -390,7 +391,7 @@ vim.g.rustaceanvim = {
 }
 
 -- Enable all configured LSPs (rust handled by rustaceanvim)
-vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'nil_ls' })
+vim.lsp.enable({ 'lua_ls', 'pyright', 'ts_ls', 'tailwindcss', 'html', 'cssls', 'eslint', 'nil_ls', 'elixirls' })
 
 -- LSP keymaps on attach
 vim.api.nvim_create_autocmd('LspAttach', {
