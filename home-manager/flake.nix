@@ -72,6 +72,7 @@
             conform-nvim
             trouble-nvim
             render-markdown-nvim
+            vim-elixir
           ];
         };
 

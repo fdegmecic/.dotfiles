@@ -179,6 +179,7 @@ binds {
     spawn-sh-at-startup "hypridle" // Idle management (lock, dim, suspend)
     spawn-sh-at-startup "qs -c noctalia-shell" // Launch noctalia
     spawn-sh-at-startup "vicinae server" // Launch vicinae server
+    spawn-sh-at-startup "flatpak run net.sonuscape.mouseless" // Mouseless (flatpak preview)
 
     prefer-no-csd // Disable program decorations
     screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
@@ -259,6 +260,7 @@ binds {
     window-rule {
         match app-id="google-chrome"
         open-on-workspace "1"
+        default-column-width { proportion 0.98; }
     }
 
     window-rule {

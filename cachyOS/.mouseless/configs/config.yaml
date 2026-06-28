@@ -300,7 +300,7 @@ keymaps:
     toggle app enabled: null
     toggle continuous mode: null
     toggle continuous mode until closed: '1'
-    toggle free mode: ControlLeft tap
+    toggle free mode: null
     toggle overlay: null
     toggle overlay lock: null
     undo last key: Backspace
