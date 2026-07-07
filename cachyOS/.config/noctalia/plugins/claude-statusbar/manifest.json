@@ -1,0 +1,30 @@
+{
+  "id": "claude-statusbar",
+  "name": "Claude Code Status",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "4.4.1",
+  "author": "Filip Degmecic",
+  "license": "MIT",
+  "repository": "",
+  "description": "Live Claude Code session state (working / waiting for permission / compacting / done) aggregated across every running session, in the bar with a detail panel.",
+  "tags": ["Bar", "Panel", "AI", "Development", "Indicator"],
+  "entryPoints": {
+    "main": "Main.qml",
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "iconColor": "none",
+      "textColor": "none",
+      "showLabel": true,
+      "showCountWhenSingle": false,
+      "hideWhenEmpty": false,
+      "binaryPath": "$HOME/.local/bin/claude-statusbar"
+    }
+  }
+}

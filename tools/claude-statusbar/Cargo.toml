@@ -1,0 +1,15 @@
+[package]
+name = "claude-statusbar"
+version = "0.1.0"
+edition = "2021"
+description = "Aggregate Claude Code session state for a noctalia-shell bar widget"
+
+[[bin]]
+name = "claude-statusbar"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+panic = "abort"

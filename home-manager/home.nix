@@ -1,4 +1,10 @@
-{ config, pkgs, nixCatsPackage, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  nixCatsPackage,
+  ...
+}:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -22,7 +28,7 @@
   home.packages = [
     pkgs.yazi
     pkgs.eza
-    pkgs.webcord
+    # pkgs.webcord
     pkgs.btop
     pkgs.stow
     pkgs.kanshi
@@ -72,10 +78,39 @@
       homelab-deploy = "rsync -avz --delete ~/personal/nix-homelab/ fdegmecic-homelab.local:/tmp/nixos/ && ssh fdegmecic-homelab 'sudo cp -r /tmp/nixos/* /etc/nixos/ && sudo nixos-rebuild switch'";
     };
 
-    initContent = ''
-      export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin:$PATH"
-      eval "$(fnm env --use-on-cd)"
-    '';
+    initContent = lib.mkMerge [
+      ''
+        export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin:$PATH"
+        eval "$(fnm env --use-on-cd)"
+      ''
+      # Runs after direnv's hook (mkAfter) so it can wrap it. Collapses direnv's
+      # noisy "export +VAR +VAR ..." line into a count when many vars change,
+      # but prints them as-is when there are only a few (<= 4).
+      (lib.mkAfter ''
+        _direnv_log_filter() {
+          awk '
+            {
+              line = $0
+              gsub(/\033\[[0-9;]*m/, "", line)
+              if (line ~ /^direnv: export /) {
+                n = split(line, a, " ") - 2
+                if (n > 4) { print "direnv: export " n " vars (+/-)"; next }
+              }
+              print
+            }
+          '
+        }
+        if typeset -f _direnv_hook > /dev/null; then
+          functions[_pm_direnv_hook_orig]=$functions[_direnv_hook]
+          _direnv_hook() {
+            local _pm_tmp="''${TMPDIR:-/tmp}/.direnv-log.$$"
+            { _pm_direnv_hook_orig; } 2>"$_pm_tmp"
+            [ -s "$_pm_tmp" ] && _direnv_log_filter < "$_pm_tmp" >&2
+            rm -f "$_pm_tmp"
+          }
+        fi
+      '')
+    ];
   };
 
   programs.zoxide = {
@@ -100,7 +135,7 @@
         name = "Filip Degmecic";
         email = "42947589+fdegmecic@users.noreply.github.com";
       };
-      init.defaultBranch = "main";
+      init.defaultBranch = "master";
     };
   };
 
@@ -119,6 +154,31 @@
     };
   };
 
+  systemd.user.services.calibre-backup = {
+    Unit.Description = "Backup Calibre library to homelab";
+    Service = {
+      Type = "oneshot";
+      ExecStart = toString (
+        pkgs.writeShellScript "calibre-backup" ''
+          ${pkgs.rsync}/bin/rsync -a --delete \
+            -e "${pkgs.openssh}/bin/ssh -o BatchMode=yes" \
+            "$HOME/Documents/calibre-books/" \
+            fdegmecic-homelab:/srv/backups/calibre/
+        ''
+      );
+    };
+  };
+
+  systemd.user.timers.calibre-backup = {
+    Unit.Description = "Daily Calibre library backup to homelab";
+    Timer = {
+      OnCalendar = "daily";
+      Persistent = true;
+      RandomizedDelaySec = "15m";
+    };
+    Install.WantedBy = [ "timers.target" ];
+  };
+
   # Neovim via nixCats (defined in ./nvim/)
   # programs.neovim not used - nixCats handles everything
 
@@ -133,7 +193,10 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home-manager/ideavimrc";
+    ".ideavimrc".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home-manager/ideavimrc";
+    ".config/starship.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home-manager/starship.toml";
   };
 
   # Home Manager can also manage your environment variables through

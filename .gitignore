@@ -4,3 +4,7 @@
 
 # Claude
 .claude/
+
+# Secrets and runtime state
+cachyOS/.config/noctalia/plugins/github-feed/settings.json
+cachyOS/.config/noctalia/plugins/github-feed/cache/

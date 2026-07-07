@@ -63,3 +63,10 @@ sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
 newgrp docker
 ```
+
+### 10. Ollama (AMD ROCm)
+```bash
+# ollama-rocm for GPU acceleration on the AMD Strix Halo iGPU (plain ollama is CPU-only)
+sudo pacman -S --noconfirm ollama-rocm
+sudo systemctl enable --now ollama
+```

@@ -1,0 +1,49 @@
+# Managed in ~/.dotfiles/home-manager/starship.toml
+# Symlinked to ~/.config/starship.toml via home.nix (mkOutOfStoreSymlink),
+# so edits here are live — no home-manager rebuild needed.
+
+# --- Database environment indicator -----------------------------------------
+# This is GLOBAL: it runs in every project. It reads whatever DB URL the current
+# project's direnv loaded and classifies it. The only thing you maintain per
+# project is the PROD marker list below (the dangerous case worth being sure of).
+#
+#   localhost / 127.0.0.1     -> local (green)    -- universal, no config
+#   matches a PROD marker     -> PROD  (red)      -- curate the regex below
+#   any other remote host     -> dev   (yellow)   -- catches everything else
+#
+# Var lookup falls back across common names: $DATABASE_URL_WITH_SCHEMA, then
+# $DATABASE_URL. Add more in the `URL=` line if a project uses a different name.
+#
+# To onboard a project's prod DB: add a unique substring of its prod host to the
+# PROD regex (the `grep -qiE` in [custom.db_prod] and the negative match in
+# [custom.db_remote]). e.g. 'oregon|prod|us-east-1-prod|myproj-prod'.
+
+[custom.db_local]
+description = "DB points at a local host"
+when = '''URL="${DATABASE_URL_WITH_SCHEMA:-$DATABASE_URL}"; printf '%s' "$URL" | grep -qiE 'localhost|127\.0\.0\.1' '''
+command = "echo local"
+format = "[│ ](bright-black)[🗄️  $output]($style) "
+style = "bold green"
+
+[custom.db_prod]
+description = "DB points at a known production host"
+when = '''URL="${DATABASE_URL_WITH_SCHEMA:-$DATABASE_URL}"; printf '%s' "$URL" | grep -qiE 'oregon|prod' '''
+command = "echo PROD"
+format = "[│ ](bright-black)[🗄️  ](red)[ $output ]($style) "
+style = "bold white bg:red"
+
+[custom.db_remote]
+description = "DB points at a remote host that isn't prod (treated as dev/staging)"
+when = '''URL="${DATABASE_URL_WITH_SCHEMA:-$DATABASE_URL}"; [ -n "$URL" ] && ! printf '%s' "$URL" | grep -qiE 'localhost|127\.0\.0\.1|oregon|prod' '''
+command = "echo dev"
+format = "[│ ](bright-black)[🗄️  $output]($style) "
+style = "bold yellow"
+
+# --- Node.js icon -----------------------------------------------------------
+# Filled-hexagon node glyph (U+F0399, nf-md-nodejs) in Node's brand green.
+# Terminals can't show the real multicolor logo (cells are single-color font
+# glyphs), so a green hexagon is the closest "Node logo" you can get in a prompt.
+# If it ever shows as a blank box, the terminal font lacks this glyph.
+[nodejs]
+symbol = "󰎙 "
+style = "bold #5fa04e"
