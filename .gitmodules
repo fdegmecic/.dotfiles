@@ -1,0 +1,3 @@
+[submodule "cachyOS/.config/noctalia/plugins/claude-statusbar"]
+	path = cachyOS/.config/noctalia/plugins/claude-statusbar
+	url = git@github.com:fdegmecic/claude-statusbar.git
