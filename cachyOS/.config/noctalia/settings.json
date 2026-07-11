@@ -176,7 +176,7 @@
                         "showCountWhenSingle": false,
                         "textColor": "none"
                     },
-                    "id": "plugin:claude-statusbar"
+                    "id": "plugin:agent-status"
                 },
                 {
                     "defaultSettings": {
