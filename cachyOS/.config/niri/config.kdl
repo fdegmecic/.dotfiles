@@ -49,6 +49,7 @@ binds {
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher" { spawn "vicinae" "toggle"; }
     MOD+B                               hotkey-overlay-title="Open Browser: Chrome" { spawn-sh "google-chrome-stable"; }
     MOD+A                               hotkey-overlay-title="Lock Screen" { spawn-sh "hyprlock"; }
+    MOD+P                               hotkey-overlay-title="AirPods: grab/release" { spawn-sh "bluetoothctl info F8:D3:F0:AA:24:5A | grep -q 'Connected: yes' && bluetoothctl disconnect F8:D3:F0:AA:24:5A || bluetoothctl connect F8:D3:F0:AA:24:5A"; }
     
     // Please choose your own file manager
     MOD+E                             hotkey-overlay-title="File Manager: yazi" { spawn-sh "ghostty --working-directory=/home/fdegmecic -e yazi"; }
@@ -180,6 +181,7 @@ binds {
     spawn-sh-at-startup "qs -c noctalia-shell" // Launch noctalia
     spawn-sh-at-startup "vicinae server" // Launch vicinae server
     spawn-sh-at-startup "flatpak run net.sonuscape.mouseless" // Mouseless (flatpak preview)
+    spawn-sh-at-startup "librepods-rust --start-minimized" // AirPods integration (ANC, battery, ear detection), tray-only
 
     prefer-no-csd // Disable program decorations
     screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
