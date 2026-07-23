@@ -82,6 +82,16 @@
       ''
         export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin:$PATH"
         eval "$(fnm env --use-on-cd)"
+
+        update-agents() {
+          echo "▶ Updating Claude Code…"
+          claude update
+          echo "▶ Updating Codex…"
+          fnm exec --using=default npm install -g @openai/codex@latest
+          echo "▶ Updating agent skills…"
+          fnm exec --using=default npx -y skills@latest update -g -y
+          echo "✓ agents up to date"
+        }
       ''
       # Runs after direnv's hook (mkAfter) so it can wrap it. Collapses direnv's
       # noisy "export +VAR +VAR ..." line into a count when many vars change,
